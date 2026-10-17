@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="220" viewBox="0 0 640 220" font-family="Arial, sans-serif">
+  <rect width="640" height="220" fill="#ffffff"/>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f3a5f"/>
+    </marker>
+  </defs>
+  <rect x="30" y="60" width="150" height="100" rx="6" fill="#f4f6f9" stroke="#1f3a5f" stroke-width="2"/>
+  <text x="105" y="105" text-anchor="middle" font-size="18" font-weight="bold" fill="#1f3a5f">Client</text>
+  <text x="105" y="130" text-anchor="middle" font-size="14" fill="#444">(web browser)</text>
+  <rect x="460" y="60" width="150" height="100" rx="6" fill="#f4f6f9" stroke="#1f3a5f" stroke-width="2"/>
+  <text x="535" y="105" text-anchor="middle" font-size="18" font-weight="bold" fill="#1f3a5f">Server</text>
+  <text x="535" y="130" text-anchor="middle" font-size="14" fill="#444">(web server)</text>
+  <line x1="185" y1="85" x2="452" y2="85" stroke="#1f3a5f" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="320" y="75" text-anchor="middle" font-size="14" fill="#222">HTTP Request: GET /index.html</text>
+  <line x1="455" y1="140" x2="188" y2="140" stroke="#3d7cc9" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="320" y="162" text-anchor="middle" font-size="14" fill="#222">HTTP Response: 200 OK + page</text>
+  <text x="320" y="205" text-anchor="middle" font-size="13" fill="#666">The client always starts; the server always answers.</text>
+</svg>

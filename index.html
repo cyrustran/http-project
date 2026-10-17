@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP: The Language of the Web | Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Site header with the main menu (same on every page) -->
+    <header id="site-header">
+        <h1>HTTP: The Language of the Web</h1>
+        <nav id="main-nav">
+            <a href="index.html" class="active">Home</a>
+            <a href="fundamentals.html">Fundamentals</a>
+            <a href="history.html">History</a>
+            <a href="modern.html">Modern HTTP</a>
+            <a href="concepts.html">Key Concepts</a>
+            <a href="references.html">References</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Introduction / abstract -->
+        <section>
+            <h2>Introduction</h2>
+            <p class="lead">Every time you open a web page, your device sends an HTTP request and a
+                server sends back an HTTP response. HTTP (Hypertext Transfer Protocol) is the set
+                of rules that browsers and servers use to talk to each other.</p>
+            <p>This site looks at HTTP as one of the core technologies of the World Wide Web. It
+                explains what HTTP does, how requests and responses are built, and why the
+                protocol exists. It then follows the history of HTTP from the one-line HTTP/0.9 in
+                1991 to HTTP/3 in 2022.</p>
+            <p>The main idea is that the <em>meaning</em> of HTTP (methods like GET and POST,
+                status codes like 404, and headers) has stayed almost the same for 30 years, while
+                the way messages travel across the network has been redesigned several times to
+                make the web faster and safer.</p>
+        </section>
+
+        <!-- Key terms used on this site -->
+        <section>
+            <h2>Key Terms</h2>
+            <ul class="terms">
+                <li>HTTP</li>
+                <li>HTTPS</li>
+                <li>Request / Response</li>
+                <li>Status Code</li>
+                <li>TCP</li>
+                <li>TLS</li>
+                <li>QUIC</li>
+                <li>Multiplexing</li>
+                <li>Head-of-Line Blocking</li>
+                <li>RFC</li>
+            </ul>
+        </section>
+
+        <!-- Table of contents linking to every page -->
+        <section>
+            <h2>Table of Contents</h2>
+            <ul class="toc">
+                <li>
+                    <a href="fundamentals.html">1. HTTP Fundamentals</a>
+                    <p>What HTTP is, how requests and responses work, methods, status codes and headers.</p>
+                </li>
+                <li>
+                    <a href="history.html">2. History of HTTP</a>
+                    <p>CERN and Tim Berners-Lee, HTTP/0.9, HTTP/1.0, HTTP/1.1 and its problems.</p>
+                </li>
+                <li>
+                    <a href="modern.html">3. Modern HTTP</a>
+                    <p>SPDY, HTTP/2, HTTPS, QUIC and HTTP/3, plus a comparison of every version.</p>
+                </li>
+                <li>
+                    <a href="concepts.html">4. Key Concepts</a>
+                    <p>Seven important ideas you need to understand HTTP.</p>
+                </li>
+                <li>
+                    <a href="references.html">5. References and Resources</a>
+                    <p>Sources used for this site and good places to learn more.</p>
+                </li>
+                <li>
+                    <a href="about.html">6. About</a>
+                    <p>About the author and this project.</p>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Footer with the class project note -->
+    <footer>
+        <p>This website is a class project for
+            <a href="https://ksuweb.github.io/IT3203/">IT 3203 Web Development</a>.</p>
+    </footer>
+</body>
+</html>

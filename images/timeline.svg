@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="170" viewBox="0 0 700 170" font-family="Arial, sans-serif">
+  <rect width="700" height="170" fill="#ffffff"/>
+  <line x1="40" y1="85" x2="660" y2="85" stroke="#1f3a5f" stroke-width="3"/>
+  <g text-anchor="middle">
+    <circle cx="70" cy="85" r="9" fill="#1f3a5f"/>
+    <text x="70" y="60" font-size="16" font-weight="bold" fill="#1f3a5f">HTTP/0.9</text>
+    <text x="70" y="118" font-size="15" fill="#222">1991</text>
+    <text x="70" y="138" font-size="12" fill="#666">GET only</text>
+    <circle cx="210" cy="85" r="9" fill="#1f3a5f"/>
+    <text x="210" y="60" font-size="16" font-weight="bold" fill="#1f3a5f">HTTP/1.0</text>
+    <text x="210" y="118" font-size="15" fill="#222">1996</text>
+    <text x="210" y="138" font-size="12" fill="#666">Headers, status codes</text>
+    <circle cx="350" cy="85" r="9" fill="#1f3a5f"/>
+    <text x="350" y="60" font-size="16" font-weight="bold" fill="#1f3a5f">HTTP/1.1</text>
+    <text x="350" y="118" font-size="15" fill="#222">1997</text>
+    <text x="350" y="138" font-size="12" fill="#666">Persistent connections</text>
+    <circle cx="490" cy="85" r="9" fill="#3d7cc9"/>
+    <text x="490" y="60" font-size="16" font-weight="bold" fill="#3d7cc9">HTTP/2</text>
+    <text x="490" y="118" font-size="15" fill="#222">2015</text>
+    <text x="490" y="138" font-size="12" fill="#666">Multiplexing</text>
+    <circle cx="630" cy="85" r="9" fill="#3d7cc9"/>
+    <text x="630" y="60" font-size="16" font-weight="bold" fill="#3d7cc9">HTTP/3</text>
+    <text x="630" y="118" font-size="15" fill="#222">2022</text>
+    <text x="630" y="138" font-size="12" fill="#666">QUIC over UDP</text>
+  </g>
+</svg>

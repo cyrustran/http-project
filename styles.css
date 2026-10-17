@@ -1,0 +1,251 @@
+/*
+  IT 3203 Project - HTTP: The Language of the Web
+  Main stylesheet (the only CSS file for the whole site)
+*/
+
+/* ---------- Color and font settings used across the site ---------- */
+:root {
+    --navy: #1f3a5f;
+    --navy-dark: #152a45;
+    --accent: #3d7cc9;
+    --light-bg: #f4f6f9;
+    --border: #d5dbe3;
+    --text: #222222;
+}
+
+/* ---------- Element selectors: base page styles ---------- */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--light-bg);
+}
+
+h1, h2, h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--navy);
+}
+
+h2 {
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 6px;
+    margin-top: 32px;
+}
+
+a {
+    color: var(--accent);
+}
+
+/* Hover effect on links */
+a:hover {
+    color: var(--navy-dark);
+    text-decoration: none;
+}
+
+/* ---------- Header and main menu (ID selectors) ---------- */
+#site-header {
+    background-color: var(--navy);
+    color: white;
+    padding: 20px 40px 0 40px;
+}
+
+#site-header h1 {
+    margin: 0 0 12px 0;
+    color: white;
+    font-size: 28px;
+}
+
+/* Main menu uses flexbox so the links line up in a row */
+#main-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+#main-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 14px;
+    border-bottom: 3px solid transparent;
+}
+
+#main-nav a:hover {
+    background-color: var(--navy-dark);
+    border-bottom: 3px solid var(--accent);
+}
+
+/* Class used to mark the page the user is currently on */
+#main-nav a.active {
+    border-bottom: 3px solid white;
+    font-weight: bold;
+}
+
+/* ---------- Main content area ---------- */
+main {
+    max-width: 960px;
+    margin: 30px auto;
+    padding: 20px 40px 40px 40px;
+    background-color: white;
+    border: 1px solid var(--border);
+}
+
+/* ---------- Class selectors for reusable pieces ---------- */
+
+/* Short intro text under a page title */
+.lead {
+    font-size: 18px;
+    color: #444444;
+}
+
+/* Gray box for side notes and examples */
+.note {
+    background-color: var(--light-bg);
+    border-left: 4px solid var(--accent);
+    padding: 12px 18px;
+    margin: 20px 0;
+}
+
+/* Code examples (HTTP messages) */
+pre {
+    background-color: #272c34;
+    color: #e6e6e6;
+    padding: 14px;
+    overflow-x: auto;
+    font-size: 14px;
+}
+
+code {
+    font-family: Consolas, "Courier New", monospace;
+}
+
+/* Images and their captions */
+figure {
+    margin: 24px 0;
+    text-align: center;
+}
+
+figure img {
+    max-width: 100%;
+    border: 1px solid var(--border);
+}
+
+figcaption {
+    font-size: 14px;
+    color: #666666;
+    margin-top: 6px;
+}
+
+/* ---------- Tables ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 15px;
+}
+
+th, td {
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background-color: var(--navy);
+    color: white;
+}
+
+tr:nth-child(even) td {
+    background-color: var(--light-bg);
+}
+
+/* ---------- Home page table of contents (grid layout) ---------- */
+.toc {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 0;
+    list-style: none;
+}
+
+.toc li {
+    border: 1px solid var(--border);
+    padding: 14px 18px;
+}
+
+.toc li a {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.toc li p {
+    margin: 6px 0 0 0;
+    font-size: 14px;
+    color: #555555;
+}
+
+/* Key terms shown as small tags */
+.terms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    list-style: none;
+}
+
+.terms li {
+    background-color: var(--light-bg);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 14px;
+    font-size: 14px;
+}
+
+/* ---------- Key concepts page (grid of cards) ---------- */
+.concept-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.concept-card {
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--navy);
+    padding: 4px 20px 16px 20px;
+}
+
+.concept-card h3 {
+    margin-bottom: 4px;
+}
+
+/* ---------- About page layout (flexbox) ---------- */
+.about-top {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.about-top img {
+    width: 160px;
+    border: 1px solid var(--border);
+}
+
+/* ---------- References list ---------- */
+.ref-list li {
+    margin-bottom: 10px;
+}
+
+/* ---------- Footer ---------- */
+footer {
+    text-align: center;
+    font-size: 14px;
+    color: #555555;
+    padding: 20px;
+    border-top: 1px solid var(--border);
+}

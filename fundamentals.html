@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP: The Language of the Web | Fundamentals</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Site header with the main menu (same on every page) -->
+    <header id="site-header">
+        <h1>HTTP: The Language of the Web</h1>
+        <nav id="main-nav">
+            <a href="index.html">Home</a>
+            <a href="fundamentals.html" class="active">Fundamentals</a>
+            <a href="history.html">History</a>
+            <a href="modern.html">Modern HTTP</a>
+            <a href="concepts.html">Key Concepts</a>
+            <a href="references.html">References</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>HTTP Fundamentals</h2>
+        <p class="lead">HTTP is an application-layer protocol. It is an agreed set of rules for how a
+            client (usually a web browser or app) asks a server for a resource, and how the server
+            answers. A resource can be a web page, an image, a video, or data for an app.</p>
+
+        <!-- Diagram of the request/response cycle -->
+        <figure>
+            <img src="images/request-response.svg" alt="Diagram showing a browser sending an HTTP request to a server and the server sending back a response">
+            <figcaption>Figure 1: The basic HTTP request and response cycle.</figcaption>
+        </figure>
+
+        <!-- Restaurant analogy -->
+        <div class="note">
+            <p><strong>An everyday example:</strong> think of a restaurant. The customer (client)
+                gives an order to the waiter (HTTP), the waiter takes it to the kitchen (server),
+                and then brings back the food (response). If the dish is not available, the waiter
+                explains why, just like a server sending back an error code.</p>
+        </div>
+
+        <h3>Three important properties</h3>
+        <ul>
+            <li><strong>Client-server:</strong> the client always starts the conversation and the server responds.</li>
+            <li><strong>Stateless:</strong> each request stands alone. The server does not remember
+                earlier requests unless something like cookies is used.</li>
+            <li><strong>Extensible:</strong> new headers and methods can be added without breaking old ones.</li>
+        </ul>
+
+        <h3>The basic steps</h3>
+        <ol>
+            <li>The user types a URL or clicks a link, and the browser sends a request.</li>
+            <li>The server finds or creates the resource.</li>
+            <li>The server sends back a status code and the content, and the browser displays it.</li>
+        </ol>
+
+        <!-- Request section -->
+        <h2>Anatomy of an HTTP Request</h2>
+        <p>An HTTP/1.1 request is plain text. Here is an example of what a browser sends when you
+            visit a page:</p>
+<pre><code>GET /learn/http HTTP/1.1
+Host: www.example.com
+User-Agent: Mozilla/5.0
+Accept: text/html
+Accept-Language: en-US</code></pre>
+        <ul>
+            <li>The first line is the <strong>request line</strong>. It has the method (GET means
+                "give me this"), the path of the resource, and the protocol version.</li>
+            <li>The <strong>Host</strong> header names the website. Many sites can share one
+                server, so HTTP/1.1 requires this header.</li>
+            <li><strong>User-Agent</strong> tells the server what software is making the request.
+                <strong>Accept</strong> and <strong>Accept-Language</strong> say which content
+                types and languages the client prefers.</li>
+            <li>A blank line ends the headers. After it there can be a body, which methods like
+                POST use to send form data.</li>
+        </ul>
+
+        <!-- Response section -->
+        <h2>Anatomy of an HTTP Response</h2>
+<pre><code>HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+Cache-Control: max-age=3600
+
+&lt;html&gt; ...page content... &lt;/html&gt;</code></pre>
+        <p>The status line has the version, a three-digit status code, and a short reason phrase.
+            <strong>Content-Type</strong> says what kind of data follows,
+            <strong>Cache-Control</strong> says how long the browser can reuse the copy, and the
+            body is the actual content.</p>
+
+        <h3>Status codes</h3>
+        <p>Status codes are grouped by their first digit:</p>
+        <table>
+            <tr>
+                <th>Group</th>
+                <th>Meaning</th>
+                <th>Common examples</th>
+            </tr>
+            <tr>
+                <td>1xx</td>
+                <td>Informational</td>
+                <td>100 Continue, 103 Early Hints</td>
+            </tr>
+            <tr>
+                <td>2xx</td>
+                <td>Success</td>
+                <td>200 OK, 201 Created, 204 No Content</td>
+            </tr>
+            <tr>
+                <td>3xx</td>
+                <td>Redirection</td>
+                <td>301 Moved Permanently, 302 Found, 304 Not Modified</td>
+            </tr>
+            <tr>
+                <td>4xx</td>
+                <td>Client error</td>
+                <td>400 Bad Request, 403 Forbidden, 404 Not Found, 429 Too Many Requests</td>
+            </tr>
+            <tr>
+                <td>5xx</td>
+                <td>Server error</td>
+                <td>500 Internal Server Error, 502 Bad Gateway, 503 Service Unavailable</td>
+            </tr>
+        </table>
+        <p class="note">Fun fact: there is a joke status code, 418 "I'm a teapot", from an April
+            Fools' document published in 1998 (RFC 2324).</p>
+
+        <!-- Methods section -->
+        <h2>HTTP Methods</h2>
+        <p>A method tells the server what action the client wants.</p>
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>What it does</th>
+                <th>Safe?</th>
+                <th>Idempotent?</th>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>Retrieve a resource</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>HEAD</td>
+                <td>Like GET, but only returns the headers</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>Send data to be processed, like a form</td>
+                <td>No</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>PUT</td>
+                <td>Replace a resource with the data sent</td>
+                <td>No</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>PATCH</td>
+                <td>Change part of a resource</td>
+                <td>No</td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>Remove a resource</td>
+                <td>No</td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td>OPTIONS</td>
+                <td>Ask which methods the server allows</td>
+                <td>Yes</td>
+                <td>Yes</td>
+            </tr>
+        </table>
+        <p><strong>Safe</strong> means the method only reads data and should not change anything on
+            the server. <strong>Idempotent</strong> means sending the same request many times has
+            the same effect as sending it once. This is why a browser can safely retry a GET but
+            asks before re-sending a POST.</p>
+
+        <!-- Headers and cookies section -->
+        <h2>Important Headers and Cookies</h2>
+        <p>Headers are extra information attached to requests and responses. Some important ones:</p>
+        <ul>
+            <li><strong>Host:</strong> which website the request is for.</li>
+            <li><strong>Content-Type:</strong> the format of the body, like text/html or application/json.</li>
+            <li><strong>Cache-Control:</strong> rules for storing and reusing responses.</li>
+            <li><strong>Authorization:</strong> credentials that prove who is asking.</li>
+            <li><strong>Location:</strong> where to go after a redirect.</li>
+            <li><strong>Accept-Encoding:</strong> compression the client understands, like gzip.</li>
+            <li><strong>Strict-Transport-Security:</strong> tells browsers to only use HTTPS for this site.</li>
+        </ul>
+        <p>Because HTTP is stateless, Lou Montulli at Netscape introduced <strong>cookies</strong>
+            in 1994. The server sends a <code>Set-Cookie</code> header, the browser stores it, and
+            sends it back in a <code>Cookie</code> header on later requests. This is how websites
+            remember logins and shopping carts.</p>
+    </main>
+
+    <!-- Footer with the class project note -->
+    <footer>
+        <p>This website is a class project for
+            <a href="https://ksuweb.github.io/IT3203/">IT 3203 Web Development</a>.</p>
+    </footer>
+</body>
+</html>

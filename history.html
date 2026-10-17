@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP: The Language of the Web | History</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Site header with the main menu (same on every page) -->
+    <header id="site-header">
+        <h1>HTTP: The Language of the Web</h1>
+        <nav id="main-nav">
+            <a href="index.html">Home</a>
+            <a href="fundamentals.html">Fundamentals</a>
+            <a href="history.html" class="active">History</a>
+            <a href="modern.html">Modern HTTP</a>
+            <a href="concepts.html">Key Concepts</a>
+            <a href="references.html">References</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>History of HTTP</h2>
+        <p class="lead">HTTP was created at CERN as the simplest possible way to fetch a document by
+            its address. Over the next six years it grew into the protocol that ran the web for
+            two decades.</p>
+
+        <!-- Timeline image -->
+        <figure>
+            <img src="images/timeline.svg" alt="Timeline of HTTP versions: HTTP/0.9 in 1991, HTTP/1.0 in 1996, HTTP/1.1 in 1997, HTTP/2 in 2015 and HTTP/3 in 2022">
+            <figcaption>Figure 2: Timeline of the major HTTP versions.</figcaption>
+        </figure>
+
+        <!-- Origins at CERN -->
+        <h2>Origins: Tim Berners-Lee and CERN (1989-1991)</h2>
+        <p>In the late 1980s, CERN (the European physics lab near Geneva) had thousands of
+            researchers using different computers and file formats, so finding information was
+            hard. Tim Berners-Lee, a British software engineer at CERN, wanted a simple way to link
+            documents stored on different computers.</p>
+        <p>He invented three technologies that are still the core of the Web:</p>
+        <ul>
+            <li><strong>URL</strong> - a universal address for every resource on the Web.</li>
+            <li><strong>HTML</strong> - the language used to write web pages and links.</li>
+            <li><strong>HTTP</strong> - the protocol that fetches a resource named by a URL.</li>
+        </ul>
+
+        <h3>Key dates</h3>
+        <ul>
+            <li><strong>March 1989:</strong> Berners-Lee writes "Information Management: A Proposal".</li>
+            <li><strong>1990:</strong> he builds the first web browser (WorldWideWeb), the first web
+                server, and HTML on a NeXT computer.</li>
+            <li><strong>August 1991:</strong> the WWW software is announced publicly.</li>
+            <li><strong>1993:</strong> the Mosaic browser makes the Web popular with inline images.
+                On 30 April 1993 CERN puts the Web software in the public domain.</li>
+            <li><strong>October 1994:</strong> Berners-Lee founds the World Wide Web Consortium (W3C).</li>
+        </ul>
+
+        <!-- HTTP/0.9 -->
+        <h2>HTTP/0.9 (1991): The One-Line Protocol</h2>
+        <p>The first version had no official number. It was called HTTP/0.9 later to tell it apart
+            from HTTP/1.0. A complete request was just one line:</p>
+<pre><code>GET /hello.html</code></pre>
+        <p>The server replied with raw HTML and then closed the connection. It could only use the
+            GET method and only send HTML text. There were no headers and no status codes, so errors
+            were just HTML text that a program could not reliably detect. Once Mosaic showed images
+            and people wanted forms, HTTP needed more.</p>
+
+        <!-- HTTP/1.0 -->
+        <h2>HTTP/1.0 (1996): Headers, Status Codes, Content Types</h2>
+        <p>HTTP/1.0 was described in RFC 1945 (May 1996) by Tim Berners-Lee, Roy Fielding, and
+            Henrik Frystyk Nielsen. It documented what browsers and servers were already doing.
+            New features included:</p>
+        <ul>
+            <li>A version number in the request line (<code>GET / HTTP/1.0</code>).</li>
+            <li>Headers on both requests and responses.</li>
+            <li>Status codes such as 200, 404, and 500.</li>
+            <li>Content-Type, so servers could send images, audio, video and other files.</li>
+            <li>New methods HEAD and POST, which made web forms possible.</li>
+        </ul>
+        <p>The weakness was that the connection was still closed after each response. A page with
+            ten images needed eleven separate TCP connections, each with its own handshake.</p>
+
+        <!-- HTTP/1.1 -->
+        <h2>HTTP/1.1 (1997): The Version That Ran the Web</h2>
+        <p>HTTP/1.1 fixed many of these problems and stayed the main version for almost twenty
+            years. Its main features were:</p>
+        <ul>
+            <li><strong>Persistent connections:</strong> many requests can reuse one TCP connection.</li>
+            <li><strong>Mandatory Host header:</strong> one server can host many websites.</li>
+            <li><strong>Chunked transfer:</strong> a server can start sending before it knows the total size.</li>
+            <li><strong>Better caching:</strong> Cache-Control, ETag, and conditional requests.</li>
+            <li><strong>Range requests:</strong> ask for part of a file, which allows resuming downloads.</li>
+            <li>More methods (PUT, DELETE, OPTIONS).</li>
+        </ul>
+        <p>The standard was revised several times: RFC 2068 (1997), RFC 2616 (1999), RFC 7230-7235
+            (2014), and RFC 9110-9112 (2022). Roy Fielding, one of its authors, also described
+            REST in his 2000 dissertation, which is the design style behind most web APIs today.</p>
+
+        <!-- Problems with HTTP/1.1 -->
+        <h2>Why HTTP/1.1 Was Not Enough</h2>
+        <p>Web pages grew from a few files in 1996 to dozens or hundreds of files. On one HTTP/1.1
+            connection, each response must finish before the next one starts. This is called
+            <strong>head-of-line blocking</strong>. For example, if a big image is requested before
+            a small JavaScript file, the small file has to wait behind the image.</p>
+        <p>Browsers worked around this by opening about six connections per site, and developers
+            invented tricks like image sprites, combining files together, and spreading files across
+            several domain names. These tricks made sites harder to maintain, and around 2009
+            Google engineers decided the protocol itself needed to change. That story continues on
+            the <a href="modern.html">Modern HTTP</a> page.</p>
+    </main>
+
+    <!-- Footer with the class project note -->
+    <footer>
+        <p>This website is a class project for
+            <a href="https://ksuweb.github.io/IT3203/">IT 3203 Web Development</a>.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP: The Language of the Web | Key Concepts</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Site header with the main menu (same on every page) -->
+    <header id="site-header">
+        <h1>HTTP: The Language of the Web</h1>
+        <nav id="main-nav">
+            <a href="index.html">Home</a>
+            <a href="fundamentals.html">Fundamentals</a>
+            <a href="history.html">History</a>
+            <a href="modern.html">Modern HTTP</a>
+            <a href="concepts.html" class="active">Key Concepts</a>
+            <a href="references.html">References</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Key Concepts</h2>
+        <p class="lead">These seven ideas come up again and again when learning about HTTP.</p>
+
+        <!-- Concept cards laid out with CSS grid -->
+        <div class="concept-grid">
+            <div class="concept-card">
+                <h3>1. Client-Server Model</h3>
+                <p>The client (like a web browser) always starts the conversation by sending a
+                    request. The server stores resources and answers each request with a
+                    response.</p>
+            </div>
+
+            <div class="concept-card">
+                <h3>2. Statelessness</h3>
+                <p>Each HTTP request stands on its own. The server does not remember past requests,
+                    which keeps HTTP simple. Websites use cookies to remember things like logins.</p>
+            </div>
+
+            <div class="concept-card">
+                <h3>3. Methods</h3>
+                <p>A method is the verb of a request and tells the server what action to take.
+                    GET retrieves data, POST sends data, PUT replaces data, and DELETE removes it.</p>
+            </div>
+
+            <div class="concept-card">
+                <h3>4. Status Codes</h3>
+                <p>A three-digit number in every response that tells the client what happened.
+                    For example, 200 means OK, 301 means the page moved, and 404 means not found.</p>
+            </div>
+
+            <div class="concept-card">
+                <h3>5. Head-of-Line Blocking</h3>
+                <p>When one slow or lost item holds up everything waiting behind it. This was the
+                    main problem with HTTP/1.1 and, at the TCP level, with HTTP/2.</p>
+            </div>
+
+            <div class="concept-card">
+                <h3>6. Multiplexing</h3>
+                <p>Sending many requests and responses over one connection at the same time by
+                    splitting them into small labelled frames. Introduced in HTTP/2.</p>
+            </div>
+
+            <div class="concept-card">
+                <h3>7. TLS and HTTPS</h3>
+                <p>TLS is the encryption protocol that protects HTTP traffic. HTTP sent inside TLS
+                    is called HTTPS, and it keeps data private and proves the server's identity.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer with the class project note -->
+    <footer>
+        <p>This website is a class project for
+            <a href="https://ksuweb.github.io/IT3203/">IT 3203 Web Development</a>.</p>
+    </footer>
+</body>
+</html>
