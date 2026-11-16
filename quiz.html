@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP: The Language of the Web | Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Quiz logic lives in its own file. "defer" runs it after the page has loaded. -->
+    <script src="quiz.js" defer></script>
+</head>
+<body>
+    <!-- Site header with the main menu (same on every page) -->
+    <header id="site-header">
+        <h1>HTTP: The Language of the Web</h1>
+        <nav id="main-nav">
+            <a href="index.html">Home</a>
+            <a href="fundamentals.html">Fundamentals</a>
+            <a href="history.html">History</a>
+            <a href="modern.html">Modern HTTP</a>
+            <a href="concepts.html">Key Concepts</a>
+            <a href="quiz.html" class="active">Quiz</a>
+            <a href="references.html">References</a>
+            <a href="about.html">About</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Self-Assessment Quiz</h2>
+        <p class="lead">Test what you learned from the Fundamentals, History, Modern HTTP and
+            Key Concepts pages.</p>
+
+        <!-- Results panel: hidden until the quiz is submitted, then filled in by quiz.js -->
+        <section id="results" class="results" hidden>
+            <div id="result-banner" class="result-banner"></div>
+            <div class="result-stats">
+                <div class="stat">
+                    <span class="stat-label">Total score</span>
+                    <span id="stat-score" class="stat-value"></span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Correct answers</span>
+                    <span id="stat-correct" class="stat-value"></span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Time spent</span>
+                    <span id="stat-time" class="stat-value"></span>
+                </div>
+            </div>
+            <p id="timeout-note" class="timeout-note" hidden>Time ran out, so the quiz was
+                submitted automatically.</p>
+
+            <h3>Question by question</h3>
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Your answer</th>
+                        <th>Correct answer</th>
+                        <th>Result</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <!-- Rows are added here by quiz.js -->
+                <tbody id="result-rows"></tbody>
+            </table>
+        </section>
+
+        <!-- Rules and start button, shown before the quiz begins -->
+        <section id="quiz-intro" class="note">
+            <h3>How it works</h3>
+            <ul>
+                <li>10 questions, 10 points each (100 points total).</li>
+                <li>You need <strong>70 points</strong> or more to pass.</li>
+                <li>You have <strong>10 minutes</strong>. When time runs out, the quiz is
+                    submitted automatically.</li>
+                <li>For "select all that apply" questions, you must choose every correct answer
+                    and no wrong ones to get the points.</li>
+                <li>Fill-in-the-blank answers are not case-sensitive.</li>
+            </ul>
+            <button type="button" id="start-btn" class="btn btn-primary">Start Quiz</button>
+        </section>
+
+        <!-- Timer bar. It stays at the top of the screen while scrolling (position: sticky). -->
+        <div id="timer-bar" class="timer-bar" hidden>
+            <span>Time left: <strong id="time-left">10:00</strong></span>
+            <div class="timer-track">
+                <div id="timer-fill" class="timer-fill"></div>
+            </div>
+        </div>
+
+        <!-- The quiz form. All questions start disabled until the user clicks Start. -->
+        <form id="quiz-form" class="quiz-form" novalidate>
+            <fieldset id="quiz-fields" class="quiz-fields" disabled>
+
+                <!-- Question 1: fill in the blank (text box inside the sentence) -->
+                <fieldset class="question" id="q1-block">
+                    <legend><span class="q-num">1</span> Fill in the blank</legend>
+                    <p>A server replies with status code
+                        <input type="text" name="q1" class="blank" aria-label="Question 1 answer"
+                            autocomplete="off" maxlength="10">
+                        when the requested page cannot be found.</p>
+                    <p class="feedback"></p>
+                </fieldset>
+
+                <!-- Question 2: multiple choice (radio buttons, only one can be picked) -->
+                <fieldset class="question" id="q2-block">
+                    <legend><span class="q-num">2</span> Multiple choice</legend>
+                    <p>In HTTP, who always starts the conversation by sending a request?</p>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q2" value="a"> The server</label>
+                        <label class="option"><input type="radio" name="q2" value="b"> The client, such as a web browser</label>
+                        <label class="option"><input type="radio" name="q2" value="c"> The router</label>
+                        <label class="option"><input type="radio" name="q2" value="d"> The DNS server</label>
+                    </div>
+                    <p class="feedback"></p>
+                </fieldset>
+
+                <!-- Question 3: multi-selection (checkboxes, more than one is correct) -->
+                <fieldset class="question" id="q3-block">
+                    <legend><span class="q-num">3</span> Select all that apply</legend>
+                    <p>Which of these are real HTTP request methods?</p>
+                    <div class="options">
+                        <label class="option"><input type="checkbox" name="q3" value="get"> GET</label>
+                        <label class="option"><input type="checkbox" name="q3" value="post"> POST</label>
+                        <label class="option"><input type="checkbox" name="q3" value="fetch"> FETCH</label>
+                        <label class="option"><input type="checkbox" name="q3" value="delete"> DELETE</label>
+                        <label class="option"><input type="checkbox" name="q3" value="send"> SEND</label>
+                    </div>
+                    <p class="feedback"></p>
+                </fieldset>
+
+                <!-- Question 4: fill in the blank -->
+                <fieldset class="question" id="q4-block">
+                    <legend><span class="q-num">4</span> Fill in the blank</legend>
+                    <p>The
+                        <input type="text" name="q4" class="blank" aria-label="Question 4 answer"
+                            autocomplete="off" maxlength="10">
+                        method asks the server to send back a resource without changing anything
+                        on the server.</p>
+                    <p class="feedback"></p>
+                </fieldset>
+
+                <!-- Question 5: multiple choice -->
+                <fieldset class="question" id="q5-block">
+                    <legend><span class="q-num">5</span> Multiple choice</legend>
+                    <p>What does a status code that starts with 5 (such as 500 or 503) mean?</p>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q5" value="a"> The request succeeded</label>
+                        <label class="option"><input type="radio" name="q5" value="b"> The resource has moved somewhere else</label>
+                        <label class="option"><input type="radio" name="q5" value="c"> The client made a mistake in the request</label>
+                        <label class="option"><input type="radio" name="q5" value="d"> Something went wrong on the server</label>
+                    </div>
+                    <p class="feedback"></p>
+                </fieldset>
+
+                <!-- Question 6: multiple choice using a drop-down list (select element) -->
+                <fieldset class="question" id="q6-block">
+                    <legend><span class="q-num">6</span> Multiple choice</legend>
+                    <p>
+                        <label for="q6-select">In what year was HTTP/2 published as a standard?</label>
+                    </p>
+                    <select id="q6-select" name="q6">
+                        <option value="">Choose a year</option>
+                        <option value="1996">1996</option>
+                        <option value="1997">1997</option>
+                        <option value="2015">2015</option>
+                        <option value="2022">2022</option>
+                    </select>
+                    <p class="feedback"></p>
+                </fieldset>
+
+                <!-- Question 7: multiple choice -->
+                <fieldset class="question" id="q7-block">
+                    <legend><span class="q-num">7</span> Multiple choice</legend>
+                    <p>Why is HTTP called a "stateless" protocol?</p>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q7" value="a"> It does not use encryption</label>
+                        <label class="option"><input type="radio" name="q7" value="b"> Each request stands on its own, and the server does not remember earlier requests</label>
+                        <label class="option"><input type="radio" name="q7" value="c"> It can only send plain text</label>
+                        <label class="option"><input type="radio" name="q7" value="d"> It has never changed since 1991</label>
+                    </div>
+                    <p class="feedback"></p>
+                </fieldset>
+
+                <!-- Question 8: fill in the blank -->
+                <fieldset class="question" id="q8-block">
+                    <legend><span class="q-num">8</span> Fill in the blank</legend>
+                    <p>HTTP/3 runs on a newer transport protocol called
+                        <input type="text" name="q8" class="blank" aria-label="Question 8 answer"
+                            autocomplete="off" maxlength="10">,
+                        which is built on top of UDP.</p>
+                    <p class="feedback"></p>
+                </fieldset>
+
+                <!-- Question 9: multiple choice -->
+                <fieldset class="question" id="q9-block">
+                    <legend><span class="q-num">9</span> Multiple choice</legend>
+                    <p>Which problem with HTTP/2 was HTTP/3 mainly designed to fix?</p>
+                    <div class="options">
+                        <label class="option"><input type="radio" name="q9" value="a"> It had no status codes</label>
+                        <label class="option"><input type="radio" name="q9" value="b"> Head-of-line blocking at the TCP level</label>
+                        <label class="option"><input type="radio" name="q9" value="c"> It could not send images</label>
+                        <label class="option"><input type="radio" name="q9" value="d"> It had no way to use headers</label>
+                    </div>
+                    <p class="feedback"></p>
+                </fieldset>
+
+                <!-- Question 10: multi-selection -->
+                <fieldset class="question" id="q10-block">
+                    <legend><span class="q-num">10</span> Select all that apply</legend>
+                    <p>Which of these are features of HTTP/2?</p>
+                    <div class="options">
+                        <label class="option"><input type="checkbox" name="q10" value="mux"> Multiplexing many requests over one connection</label>
+                        <label class="option"><input type="checkbox" name="q10" value="binary"> Binary framing instead of plain text</label>
+                        <label class="option"><input type="checkbox" name="q10" value="hpack"> HPACK header compression</label>
+                        <label class="option"><input type="checkbox" name="q10" value="udp"> Runs over UDP instead of TCP</label>
+                        <label class="option"><input type="checkbox" name="q10" value="nohead"> No headers at all</label>
+                    </div>
+                    <p class="feedback"></p>
+                </fieldset>
+
+            </fieldset>
+
+            <!-- Submit checks the answers. Retake clears everything and starts over. -->
+            <div class="quiz-buttons">
+                <button type="submit" id="submit-btn" class="btn btn-primary" disabled>Submit Quiz</button>
+                <button type="button" id="reset-btn" class="btn btn-secondary">Retake / Reset Quiz</button>
+            </div>
+        </form>
+    </main>
+
+    <!-- Footer with the class project note -->
+    <footer>
+        <p>This website is a class project for
+            <a href="https://ksuweb.github.io/IT3203/">IT 3203 Web Development</a>.</p>
+    </footer>
+</body>
+</html>

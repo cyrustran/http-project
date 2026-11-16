@@ -16,6 +16,7 @@
             <a href="history.html">History</a>
             <a href="modern.html">Modern HTTP</a>
             <a href="concepts.html" class="active">Key Concepts</a>
+            <a href="quiz.html">Quiz</a>
             <a href="references.html">References</a>
             <a href="about.html">About</a>
         </nav>
@@ -23,7 +24,7 @@
 
     <main>
         <h2>Key Concepts</h2>
-        <p class="lead">These seven ideas come up again and again when learning about HTTP.</p>
+        <p class="lead">These nine ideas come up again and again when learning about HTTP.</p>
 
         <!-- Concept cards laid out with CSS grid -->
         <div class="concept-grid">
@@ -68,6 +69,22 @@
                 <h3>7. TLS and HTTPS</h3>
                 <p>TLS is the encryption protocol that protects HTTP traffic. HTTP sent inside TLS
                     is called HTTPS, and it keeps data private and proves the server's identity.</p>
+            </div>
+
+            <div class="concept-card">
+                <h3>8. Caching</h3>
+                <p>Browsers and servers along the way can save a copy of a response and reuse it
+                    instead of downloading it again. Headers like Cache-Control and ETag say how
+                    long a copy stays fresh. A 304 Not Modified response tells the browser its
+                    saved copy is still good.</p>
+            </div>
+
+            <div class="concept-card">
+                <h3>9. Proxies and CDNs</h3>
+                <p>A proxy is a server that sits between the client and the origin server and
+                    passes HTTP messages along. A content delivery network (CDN) is a large group of
+                    these servers placed close to users, so cached pages, images and videos arrive
+                    faster.</p>
             </div>
         </div>
     </main>

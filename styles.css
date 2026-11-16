@@ -249,3 +249,335 @@ footer {
     padding: 20px;
     border-top: 1px solid var(--border);
 }
+
+/* =====================================================================
+   Quiz page (quiz.html) - added in Milestone 2
+   ===================================================================== */
+
+/* Make sure anything with the "hidden" attribute stays hidden,
+   even if another rule below gives it display: flex or grid */
+[hidden] {
+    display: none !important;
+}
+
+/* Colors used for right/wrong answers */
+:root {
+    --green: #2e7d32;
+    --green-bg: #e8f5e9;
+    --red: #c62828;
+    --red-bg: #fdecea;
+    --orange: #e08a00;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    padding: 10px 22px;
+    border: 2px solid var(--navy);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--navy);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--navy-dark);
+}
+
+.btn-secondary {
+    background-color: white;
+    color: var(--navy);
+}
+
+.btn-secondary:hover {
+    background-color: var(--light-bg);
+}
+
+.btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* ---------- Timer bar (sticks to the top of the screen while scrolling) ---------- */
+.timer-bar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: white;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    padding: 10px 16px;
+    margin: 20px 0;
+}
+
+.timer-bar strong {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 18px;
+}
+
+.timer-track {
+    flex: 1;
+    height: 8px;
+    background-color: var(--light-bg);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.timer-fill {
+    height: 100%;
+    width: 100%;
+    background-color: var(--accent);
+    transition: width 1s linear;
+}
+
+/* Less than 2 minutes left */
+.timer-bar.warning {
+    border-left-color: var(--orange);
+}
+
+.timer-bar.warning .timer-fill {
+    background-color: var(--orange);
+}
+
+/* Less than 1 minute left */
+.timer-bar.danger {
+    border-left-color: var(--red);
+    color: var(--red);
+}
+
+.timer-bar.danger .timer-fill {
+    background-color: var(--red);
+}
+
+/* ---------- Form and question blocks ---------- */
+.quiz-fields {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Grayed out until the user clicks Start */
+.quiz-fields:disabled .question {
+    opacity: 0.6;
+}
+
+.question {
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--navy);
+    padding: 8px 20px 12px 20px;
+    margin: 0 0 20px 0;
+    background-color: white;
+}
+
+.question legend {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: bold;
+    color: var(--navy);
+    padding: 0 6px;
+}
+
+/* Round badge with the question number */
+.q-num {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: var(--navy);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    margin-right: 6px;
+}
+
+/* Fill-in-the-blank text boxes sit inside the sentence */
+.blank,
+.question select {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    padding: 6px 10px;
+    border: 1px solid #9aa5b4;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.blank {
+    width: 120px;
+    border-bottom: 2px solid var(--navy);
+}
+
+.question select {
+    min-width: 200px;
+}
+
+/* Visible focus ring when the user tabs or clicks into a control */
+.blank:focus,
+.question select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(61, 124, 201, 0.25);
+}
+
+/* Answer choices for radio buttons and checkboxes, stacked with flexbox */
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.option:hover {
+    background-color: var(--light-bg);
+    border-color: var(--accent);
+}
+
+/* Highlight the choice the user picked */
+.option:has(input:checked) {
+    background-color: #e7f0fb;
+    border-color: var(--accent);
+}
+
+.option input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--navy);
+}
+
+/* ---------- Right / wrong colors after submitting ---------- */
+.question.correct {
+    border-left-color: var(--green);
+    background-color: var(--green-bg);
+}
+
+.question.incorrect {
+    border-left-color: var(--red);
+    background-color: var(--red-bg);
+}
+
+.feedback {
+    font-weight: bold;
+    margin: 10px 0 0 0;
+}
+
+.feedback:empty {
+    display: none;
+}
+
+.question.correct .feedback {
+    color: var(--green);
+}
+
+.question.incorrect .feedback {
+    color: var(--red);
+}
+
+/* Show the quiz at full color once it's been graded */
+.quiz-fields:disabled .question.correct,
+.quiz-fields:disabled .question.incorrect {
+    opacity: 1;
+}
+
+.quiz-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+/* ---------- Results panel ---------- */
+.results {
+    border: 1px solid var(--border);
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.result-banner {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 14px 18px;
+    border-radius: 4px;
+    color: white;
+}
+
+.result-banner.pass {
+    background-color: var(--green);
+}
+
+.result-banner.fail {
+    background-color: var(--red);
+}
+
+/* Three stat boxes side by side (grid layout) */
+.result-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.stat {
+    border: 1px solid var(--border);
+    padding: 12px;
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    font-size: 14px;
+    color: #555555;
+}
+
+.stat-value {
+    display: block;
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--navy);
+}
+
+.text-pass {
+    color: var(--green);
+}
+
+.text-fail {
+    color: var(--red);
+}
+
+.timeout-note {
+    color: var(--red);
+    font-weight: bold;
+}
+
+/* Results table rows colored by result */
+.result-table tr.row-correct td {
+    background-color: var(--green-bg);
+}
+
+.result-table tr.row-incorrect td {
+    background-color: var(--red-bg);
+}
+
+.result-table tr.row-correct td:nth-child(4) {
+    color: var(--green);
+    font-weight: bold;
+}
+
+.result-table tr.row-incorrect td:nth-child(4) {
+    color: var(--red);
+    font-weight: bold;
+}
